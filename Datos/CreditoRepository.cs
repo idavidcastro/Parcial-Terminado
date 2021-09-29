@@ -20,22 +20,42 @@ namespace Datos
         }
         public List<Creditos> Visualizar()
         {
-            List<Creditos> creditos = new List<Creditos>();
+            List<Creditos> creditos = new();
             using (StreamReader reader = new(ruta))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
                 {
                     string[] dato = linea.Split(';');
-
+                    Creditos credito;
+                    
                     {
-
+                        NumeroCredito = int.Parse(dato[0]),
+                        IdentificacionCliente = int.Parse(dato[1]),
+                        TipoTasaInteres = int.Parse(dato[2]),
+                        MontoDinero = decimal.Parse(dato[3]),
+                        ValorInteres = decimal.Parse(dato[4]),
+                        Periodo = int.Parse(dato[5]),
+                        CapitalFinal = decimal.Parse(dato[6])
 
                     };
-
+                    creditos.Add(credito);
                 }
             }
             return creditos;
+        }
+        public void Eliminar(string id)
+        {
+            List<Creditos> creditos = Visualizar();
+            File.Delete(ruta);
+
+            foreach (var item in creditos)
+            {
+                if (!item.NumeroCredito.Equals(id))
+                {
+                    Guardar(item);
+                }
+            }
         }
     }
 }

@@ -25,5 +25,30 @@ namespace Lógica
                 return "ERROR!" + e.Message;
             }
         }
+
+        public CreditoConsultaResponse Visualizar()
+        {
+            try
+            {
+                return new CreditoConsultaResponse(creditoRepository.Visualizar());
+            }
+            catch (Exception e)
+            {
+                return new CreditoConsultaResponse("ERROR!" + e.Message);
+            }
+        }
+
+        public string Eliminar(string id)
+        {
+            try
+            {
+                creditoRepository.Eliminar(id);
+                return "Se elimino correctamente";
+            }
+            catch (Exception e)
+            {
+                return "Error al guardar: " + e.Message;
+            }
+        }
     }
 }

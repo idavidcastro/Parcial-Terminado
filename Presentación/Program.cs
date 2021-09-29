@@ -11,7 +11,7 @@ namespace Presentation
             decimal montoDinero;
             decimal valorInteres;
             int periodo, tipoTasaInteres, numeroCredito, identificacionCliente;
-
+            string buscarCredito;
             Console.Write("Ingrese el número del crédito: ");
             numeroCredito = int.Parse(Console.ReadLine());
             Console.Write("Ingrese la identificacion del cliente: ");
@@ -38,6 +38,18 @@ namespace Presentation
                 creditos.CalcularCredito();
                 CreditoService creditoService = new();
                 creditoService.Guardar(creditos);
+                var respuesta = creditoService.Visualizar();
+                if (respuesta.Error)
+                {
+                    Console.WriteLine(respuesta.Mensaje);
+                }
+                else
+                {
+                    foreach (var item in respuesta.Creditos)
+                    {
+                        Console.WriteLine($"{item.NumeroCredito};{item.IdentificacionCliente};{item.TipoTasaInteres};{item.MontoDinero};{item.ValorInteres};{item.Periodo};{item.CapitalFinal}");
+                    }
+                }
 
             }
             else if (tipoTasaInteres == 2)
@@ -46,9 +58,24 @@ namespace Presentation
                 creditos.CalcularCredito();
                 CreditoService creditoService = new();
                 creditoService.Guardar(creditos);
+                var respuesta = creditoService.Visualizar();
+                if (respuesta.Error)
+                {
+                    Console.WriteLine(respuesta.Mensaje);
+                }
+                else
+                {
+                    foreach (var item in respuesta.Creditos)
+                    {
+                        Console.WriteLine($"{item.NumeroCredito};{item.IdentificacionCliente};{item.TipoTasaInteres};{item.MontoDinero};{item.ValorInteres};{item.Periodo};{item.CapitalFinal}");
+                    }
+                }
             }
-
-
+            Console.WriteLine("Numero de el credito que desea eliminar:");
+            buscarCredito = Console.ReadLine();
+            CreditoService creditoService = new CreditoService();
+            var repuestaOne = creditoService.Eliminar(buscarCredito);
+            Console.WriteLine(respuestaOne);
         }
         private static void Consultar()
         {
