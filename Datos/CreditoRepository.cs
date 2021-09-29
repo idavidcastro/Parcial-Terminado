@@ -44,5 +44,18 @@ namespace Datos
             }
             return creditos;
         }
+        public void Eliminar(string id)
+        {
+            List<Creditos> creditos = Visualizar();
+            File.Delete(ruta);
+
+            foreach (var item in creditos)
+            {
+                if (!item.NumeroCredito.Equals(id))
+                {
+                    Guardar(item);
+                }
+            }
+        }
     }
 }

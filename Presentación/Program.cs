@@ -11,7 +11,7 @@ namespace Presentation
             decimal montoDinero;
             decimal valorInteres;
             int periodo, tipoTasaInteres, numeroCredito, identificacionCliente;
-
+            string buscarCredito;
             Console.Write("Ingrese el número del crédito: ");
             numeroCredito = int.Parse(Console.ReadLine());
             Console.Write("Ingrese la identificacion del cliente: ");
@@ -71,8 +71,11 @@ namespace Presentation
                     }
                 }
             }
-
-
+            Console.WriteLine("Numero de el credito que desea eliminar:");
+            buscarCredito = Console.ReadLine();
+            CreditoService creditoService = new CreditoService();
+            var repuestaOne = creditoService.Eliminar(buscarCredito);
+            Console.WriteLine(respuestaOne);
         }
     }
 }
