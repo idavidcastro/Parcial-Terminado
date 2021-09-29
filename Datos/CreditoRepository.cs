@@ -30,13 +30,13 @@ namespace Datos
                     Creditos credito;
                     
                     {
-                        NumeroCredito = int.Parse(dato[0]),
-                        IdentificacionCliente = int.Parse(dato[1]),
-                        TipoTasaInteres = int.Parse(dato[2]),
-                        MontoDinero = decimal.Parse(dato[3]),
-                        ValorInteres = decimal.Parse(dato[4]),
-                        Periodo = int.Parse(dato[5]),
-                        CapitalFinal = decimal.Parse(dato[6])
+                        creditos.NumeroCredito = int.Parse(dato[0]),
+                        creditos.IdentificacionCliente = int.Parse(dato[1]),
+                        creditos.TipoTasaInteres = int.Parse(dato[2]),
+                        creditos.MontoDinero = decimal.Parse(dato[3]),
+                        creditos.ValorInteres = decimal.Parse(dato[4]),
+                        creditos.Periodo = int.Parse(dato[5]),
+                        creditos.CapitalFinal = decimal.Parse(dato[6])
 
                     };
                     creditos.Add(credito);
@@ -54,6 +54,23 @@ namespace Datos
                 if (!item.NumeroCredito.Equals(id))
                 {
                     Guardar(item);
+                }
+            }
+        }
+        public void Modificar(string id, Creditos personaNew)
+        {
+            List<Creditos> personas = Visualizar();
+            File.Delete(ruta);
+
+            foreach (var item in personas)
+            {
+                if (!item.IdentificacionCliente.Equals(id))
+                {
+                    Guardar(item);
+                }
+                else
+                {
+                    Guardar(personaNew);
                 }
             }
         }
