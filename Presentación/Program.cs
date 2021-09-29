@@ -38,6 +38,18 @@ namespace Presentation
                 creditos.CalcularCredito();
                 CreditoService creditoService = new();
                 creditoService.Guardar(creditos);
+                var respuesta = creditoService.Visualizar();
+                if (respuesta.Error)
+                {
+                    Console.WriteLine(respuesta.Mensaje);
+                }
+                else
+                {
+                    foreach (var item in respuesta.Creditos)
+                    {
+                        Console.WriteLine($"{item.NumeroCredito};{item.IdentificacionCliente};{item.TipoTasaInteres};{item.MontoDinero};{item.ValorInteres};{item.Periodo};{item.CapitalFinal}");
+                    }
+                }
 
             }
             else if (tipoTasaInteres == 2)
@@ -46,6 +58,18 @@ namespace Presentation
                 creditos.CalcularCredito();
                 CreditoService creditoService = new();
                 creditoService.Guardar(creditos);
+                var respuesta = creditoService.Visualizar();
+                if (respuesta.Error)
+                {
+                    Console.WriteLine(respuesta.Mensaje);
+                }
+                else
+                {
+                    foreach (var item in respuesta.Creditos)
+                    {
+                        Console.WriteLine($"{item.NumeroCredito};{item.IdentificacionCliente};{item.TipoTasaInteres};{item.MontoDinero};{item.ValorInteres};{item.Periodo};{item.CapitalFinal}");
+                    }
+                }
             }
 
 
