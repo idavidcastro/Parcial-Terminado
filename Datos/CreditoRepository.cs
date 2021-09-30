@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Entidad;
 using System.Collections.Generic;
 using System.IO;
-using Entidad;
 
 namespace Datos
 {
@@ -26,24 +25,37 @@ namespace Datos
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
                 {
-                    string[] dato = linea.Split(';');
-                    Creditos credito;
-                    
-                    {
-                        creditos.NumeroCredito = int.Parse(dato[0]),
-                        creditos.IdentificacionCliente = int.Parse(dato[1]),
-                        creditos.TipoTasaInteres = int.Parse(dato[2]),
-                        creditos.MontoDinero = decimal.Parse(dato[3]),
-                        creditos.ValorInteres = decimal.Parse(dato[4]),
-                        creditos.Periodo = int.Parse(dato[5]),
-                        creditos.CapitalFinal = decimal.Parse(dato[6])
+                    Creditos credito = Mapear(linea) ;
 
-                    };
                     creditos.Add(credito);
                 }
             }
             return creditos;
         }
+        private static Creditos Mapear(string linea)
+        {
+            Creditos credito;
+            string[] dato = linea.Split(';');
+            if (int.Parse(dato[2]) == 1)
+            {
+                credito = new CreditoTipoCompuesto();
+            }
+            else if (int.Parse(dato[2]) == 2)
+            {
+                credito = new CreditoTipoSimple();
+            }
+
+            credito.NumeroCredito = int.Parse(dato[0]);
+            credito.IdentificacionCliente = int.Parse(dato[1]);
+            credito.TipoTasaInteres = int.Parse(dato[2]);
+            credito.MontoDinero = decimal.Parse(dato[3]);
+            credito.ValorInteres = decimal.Parse(dato[4]);
+            credito.Periodo = int.Parse(dato[5]);
+            credito.CapitalFinal = decimal.Parse(dato[6]);
+
+            return credito;
+        }
+
         public void Eliminar(string id)
         {
             List<Creditos> creditos = Visualizar();

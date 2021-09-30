@@ -8,6 +8,10 @@ namespace Entidad
 {
     public class CreditoTipoSimple : Creditos
     {
+        public CreditoTipoSimple()
+        {
+        }
+
         public CreditoTipoSimple(int numeroCredito, int identificacionCliente, decimal montoDinero, int tipoTasaInteres, decimal valorInteres, int periodo)
         {
             MontoDinero = montoDinero;

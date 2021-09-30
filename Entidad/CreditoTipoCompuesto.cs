@@ -8,6 +8,10 @@ namespace Entidad
 {
     public class CreditoTipoCompuesto : Creditos
     {
+        public CreditoTipoCompuesto()
+        {
+        }
+
         public CreditoTipoCompuesto(int numeroCredito, int identificacionCliente, decimal montoDinero, int tipoTasaInteres, decimal valorInteres, int periodo)
         {
             MontoDinero = montoDinero;
